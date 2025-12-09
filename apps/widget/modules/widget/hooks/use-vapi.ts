@@ -16,7 +16,7 @@ export const useVapi = () => {
 
   useEffect(() => {
     // Only for testing the Vapi API, otherwise customers will provide their own API keys.
-    const vapiInstance = new Vapi(process.env.NEXT_PUBLIC_VAPI_API_KEY!);
+    const vapiInstance = new Vapi("");
     setVapi(vapiInstance);
 
     vapiInstance.on("call-start", () => {
