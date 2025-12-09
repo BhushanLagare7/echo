@@ -117,6 +117,10 @@ export const DashboardSidebar = () => {
               {customerSupportItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
+                    className={cn(
+                      isActive(item.url) &&
+                        "bg-gradient-to-b from-sidebar-primary to-[#0B63F3]! text-sidebar-primary-foreground! hover:to-[#0B63F3]/90!"
+                    )}
                     tooltip={item.title}
                     isActive={isActive(item.url)}
                     asChild
@@ -140,6 +144,10 @@ export const DashboardSidebar = () => {
               {configurationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
+                    className={cn(
+                      isActive(item.url) &&
+                        "bg-gradient-to-b from-sidebar-primary to-[#0B63F3]! text-sidebar-primary-foreground! hover:to-[#0B63F3]/90!"
+                    )}
                     tooltip={item.title}
                     isActive={isActive(item.url)}
                     asChild
@@ -163,6 +171,10 @@ export const DashboardSidebar = () => {
               {accountItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
+                    className={cn(
+                      isActive(item.url) &&
+                        "bg-gradient-to-b from-sidebar-primary to-[#0B63F3]! text-sidebar-primary-foreground! hover:to-[#0B63F3]/90!"
+                    )}
                     tooltip={item.title}
                     isActive={isActive(item.url)}
                     asChild
