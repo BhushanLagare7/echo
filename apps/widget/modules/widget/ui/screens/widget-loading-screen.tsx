@@ -100,9 +100,6 @@ export const WidgetLoadingScreen = ({
         if (result.valid) {
           setSessionValid(true);
           setStep("done");
-        } else {
-          setErrorMessage(result.reason || "Invalid session");
-          setScreen("error");
         }
       })
       .catch(() => {
