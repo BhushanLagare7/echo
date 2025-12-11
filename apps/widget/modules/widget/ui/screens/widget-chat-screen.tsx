@@ -33,7 +33,10 @@ import {
   AISuggestions,
 } from "@workspace/ui/components/ai/suggestion";
 import { Button } from "@workspace/ui/components/button";
+import { DicebearAvatar } from "@workspace/ui/components/dicebear-avatar";
 import { Form, FormField } from "@workspace/ui/components/form";
+import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
+import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll";
 
 import {
   contactSessionIdAtomFamily,
@@ -98,6 +101,13 @@ export const WidgetChatScreen = () => {
     { initialNumItems: 10 }
   );
 
+  const { topElementRef, handleLoadMore, canLoadMore, isLoadingMore } =
+    useInfiniteScroll({
+      status: messages.status,
+      loadMore: messages.loadMore,
+      loadSize: 10,
+    });
+
   return (
     <>
       <WidgetHeader className="flex justify-between items-center">
@@ -114,6 +124,12 @@ export const WidgetChatScreen = () => {
       <AIConversation>
         <AIConversationScrollButton />
         <AIConversationContent>
+          <InfiniteScrollTrigger
+            canLoadMore={canLoadMore}
+            isLoadingMore={isLoadingMore}
+            onLoadMore={handleLoadMore}
+            ref={topElementRef}
+          />
           {toUIMessages(messages.results ?? [])?.map((message) => (
             <AIMessage
               key={message.id}
@@ -122,7 +138,13 @@ export const WidgetChatScreen = () => {
               <AIMessageContent>
                 <AIResponse>{message.text}</AIResponse>
               </AIMessageContent>
-              {/* // TODO: Add Avatar component */}
+              {message.role === "assistant" && (
+                <DicebearAvatar
+                  seed="assistant"
+                  imageUrl="/logo.svg"
+                  size={32}
+                />
+              )}
             </AIMessage>
           ))}
         </AIConversationContent>

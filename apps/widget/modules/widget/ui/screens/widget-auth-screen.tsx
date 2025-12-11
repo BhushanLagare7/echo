@@ -21,6 +21,7 @@ import { Input } from "@workspace/ui/components/input";
 import {
   contactSessionIdAtomFamily,
   organizationIdAtom,
+  screenAtom,
 } from "../../atoms/widget-atoms";
 import { WidgetHeader } from "../components/widget-header";
 
@@ -30,6 +31,7 @@ const formSchema = z.object({
 });
 
 export const WidgetAuthScreen = () => {
+  const setScreen = useSetAtom(screenAtom);
   const organizationId = useAtomValue(organizationIdAtom);
   const setContactSessionId = useSetAtom(
     contactSessionIdAtomFamily(organizationId || "")
@@ -73,6 +75,7 @@ export const WidgetAuthScreen = () => {
     });
 
     setContactSessionId(contactSessionId);
+    setScreen("selection");
   };
 
   return (
