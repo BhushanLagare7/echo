@@ -7,6 +7,7 @@ import { action, query } from "../_generated/server";
 import { supportAgent } from "../system/ai/agents/supportAgent";
 import { escalateConversation } from "../system/ai/tools/escalateConversation";
 import { resolveConversation } from "../system/ai/tools/resolveConversation";
+import { search } from "../system/ai/tools/search";
 
 export const create = action({
   args: {
@@ -56,8 +57,9 @@ export const create = action({
         {
           prompt: args.prompt,
           tools: {
-            escalateConversation,
-            resolveConversation,
+            escalateConversationTool: escalateConversation,
+            resolveConversationTool: resolveConversation,
+            searchTool: search,
           },
         }
       );
