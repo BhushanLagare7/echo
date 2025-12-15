@@ -1,7 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": ["CLERK_JWT_ISSUER_DOMAIN", "CLERK_SECRET_KEY"],
+  "globalEnv": [
+    "CLERK_JWT_ISSUER_DOMAIN",
+    "CLERK_SECRET_KEY",
+    "ENCRYPTION_KEY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
