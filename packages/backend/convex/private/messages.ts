@@ -32,7 +32,7 @@ export const enhanceResponse = action({
     }
 
     const response = await generateText({
-      model: google("gemini-2.5-flash-lite"),
+      model: google("gemini-2.5-flash"),
       messages: [
         {
           role: "system",

@@ -6,9 +6,9 @@ import { google } from "@ai-sdk/google";
 import { Id } from "../_generated/dataModel";
 
 const AI_MODELS = {
-  image: google("gemini-2.5-flash-lite"),
-  pdf: google("gemini-2.5-flash-lite"),
-  html: google("gemini-2.5-flash-lite"),
+  image: google("gemini-2.5-flash"),
+  pdf: google("gemini-2.5-flash"),
+  html: google("gemini-2.5-flash"),
 } as const;
 
 const SUPPORTED_IMAGE_TYPES = [
