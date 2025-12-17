@@ -4,7 +4,12 @@ import { useState } from "react";
 
 import { useMutation } from "convex/react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { ChevronRightIcon, MessageSquareTextIcon } from "lucide-react";
+import {
+  ChevronRightIcon,
+  MessageSquareTextIcon,
+  MicIcon,
+  PhoneIcon,
+} from "lucide-react";
 
 import { api } from "@workspace/backend/_generated/api";
 
@@ -14,8 +19,10 @@ import {
   contactSessionIdAtomFamily,
   conversationIdAtom,
   errorMessageAtom,
+  hasVapiSecretsAtom,
   organizationIdAtom,
   screenAtom,
+  widgetSettingsAtom,
 } from "../../atoms/widget-atoms";
 import { WidgetFooter } from "../components/widget-footer";
 import { WidgetHeader } from "../components/widget-header";
@@ -25,6 +32,8 @@ export const WidgetSelectionScreen = () => {
   const setErrorMessage = useSetAtom(errorMessageAtom);
   const setConversationId = useSetAtom(conversationIdAtom);
 
+  const widgetSettings = useAtomValue(widgetSettingsAtom);
+  const hasVapiSecrets = useAtomValue(hasVapiSecretsAtom);
   const organizationId = useAtomValue(organizationIdAtom);
   const contactSessionId = useAtomValue(
     contactSessionIdAtomFamily(organizationId || "")
@@ -81,6 +90,34 @@ export const WidgetSelectionScreen = () => {
           </div>
           <ChevronRightIcon />
         </Button>
+        {hasVapiSecrets && widgetSettings?.vapiSettings?.assistantId && (
+          <Button
+            variant="outline"
+            className="justify-between w-full h-16"
+            onClick={() => setScreen("voice")}
+            disabled={isPending}
+          >
+            <div className="flex gap-x-2 items-center">
+              <MicIcon className="size-4" />
+              <span>Start voice call</span>
+            </div>
+            <ChevronRightIcon />
+          </Button>
+        )}
+        {hasVapiSecrets && widgetSettings?.vapiSettings?.phoneNumber && (
+          <Button
+            variant="outline"
+            className="justify-between w-full h-16"
+            onClick={() => setScreen("contact")}
+            disabled={isPending}
+          >
+            <div className="flex gap-x-2 items-center">
+              <PhoneIcon className="size-4" />
+              <span>Call us</span>
+            </div>
+            <ChevronRightIcon />
+          </Button>
+        )}
       </div>
       <WidgetFooter />
     </>
