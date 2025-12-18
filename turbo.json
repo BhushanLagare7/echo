@@ -4,7 +4,8 @@
   "globalEnv": [
     "CLERK_JWT_ISSUER_DOMAIN",
     "CLERK_SECRET_KEY",
-    "ENCRYPTION_KEY"
+    "ENCRYPTION_KEY",
+    "CLERK_WEBHOOK_SECRET"
   ],
   "tasks": {
     "build": {
