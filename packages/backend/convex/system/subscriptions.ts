@@ -37,6 +37,7 @@ export const getByOrganizationId = internalQuery({
       .query("subscriptions")
       .withIndex("by_organization_id", (q) =>
         q.eq("organizationId", args.organizationId)
-      );
+      )
+      .unique();
   },
 });
