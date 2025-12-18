@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 
 import Bowser from "bowser";
 import { useQuery } from "convex/react";
-import { GlobeIcon, MailIcon, MonitorIcon } from "lucide-react";
+import { ClockIcon, GlobeIcon, MailIcon, MonitorIcon } from "lucide-react";
 
 import { api } from "@workspace/backend/_generated/api";
 import { Id } from "@workspace/backend/_generated/dataModel";
@@ -109,11 +109,11 @@ export const ContactPanel = () => {
           },
           {
             label: "Screen",
-            value: contactSession.metadata.screenResolution,
+            value: contactSession.metadata.screenResolution || "Unknown",
           },
           {
             label: "Viewport",
-            value: contactSession.metadata.viewportSize,
+            value: contactSession.metadata.viewportSize || "Unknown",
           },
           {
             label: "Cookies",
@@ -138,19 +138,30 @@ export const ContactPanel = () => {
             : []),
           {
             label: "Language",
-            value: contactSession.metadata.language,
+            value: contactSession.metadata.language || "Unknown",
           },
           {
             label: "Timezone",
-            value: contactSession.metadata.timezone,
+            value: contactSession.metadata.timezone || "Unknown",
           },
           {
             label: "UTC Offset",
-            value: contactSession.metadata.timezoneOffset,
+            value: contactSession.metadata.timezoneOffset || "Unknown",
           },
           {
             label: "Referrer",
-            value: contactSession.metadata.referrer,
+            value: contactSession.metadata.referrer || "Unknown",
+          },
+        ],
+      },
+      {
+        id: "session-details",
+        title: "Session Details",
+        icon: ClockIcon,
+        items: [
+          {
+            label: "Session Started",
+            value: new Date(contactSession._creationTime).toLocaleString(),
           },
         ],
       },
