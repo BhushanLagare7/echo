@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { useAction, useMutation, useQuery } from "convex/react";
 import { MoreHorizontalIcon, Wand2Icon } from "lucide-react";
+import { toast } from "sonner";
 import { z } from "zod";
 import { toUIMessages, useThreadMessages } from "@convex-dev/agent/react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -84,6 +85,7 @@ export const ConversationIdView = ({
       });
       form.setValue("message", response);
     } catch (error) {
+      toast.error("Failed to enhance response");
       console.error(error);
     } finally {
       setIsEnhancing(false);
