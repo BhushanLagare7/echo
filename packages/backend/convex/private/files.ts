@@ -9,6 +9,7 @@ import {
   vEntryId,
 } from "@convex-dev/rag";
 
+import { internal } from "../_generated/api";
 import { Id } from "../_generated/dataModel";
 import { action, mutation, query, QueryCtx } from "../_generated/server";
 import { extractTextContent } from "../lib/extractTextContent";
@@ -107,6 +108,18 @@ export const addFile = action({
       throw new ConvexError({
         code: "UNAUTHORIZED",
         message: "Organization not found",
+      });
+    }
+
+    const subscription = await ctx.runQuery(
+      internal.system.subscriptions.getByOrganizationId,
+      { organizationId: orgId }
+    );
+
+    if (!subscription || subscription.status !== "active") {
+      throw new ConvexError({
+        code: "BAD_REQUEST",
+        message: "Subscription not found or not active",
       });
     }
 
