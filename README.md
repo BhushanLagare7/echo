@@ -45,7 +45,7 @@ This project is a monorepo managed by TurboRepo:
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/echo.git
+    git clone https://github.com/BhushanLagare7/echo.git
     cd echo
     ```
 
